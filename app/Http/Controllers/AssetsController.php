@@ -86,6 +86,8 @@ class AssetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     //Show single asset
     public function show(Assets $assets)
     {
         return view ('assets.show', [
@@ -100,9 +102,12 @@ class AssetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+
+     //Show Edit Form
+    public function edit(Assets $assets)
     {
-        //
+        return view('assets.edit', ['asset' => $assets]);
+        
     }
 
     /**
@@ -112,9 +117,41 @@ class AssetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     //Update Assets Data
     public function update(Request $request, $id)
     {
-        //
+        $formFields = $request->validate([
+            'name' => 'required',
+            'serialNumber' => 'required',
+            'assetNumber' => 'required',
+            'description' => 'required',
+            'manufacturer' => 'required',
+            'assetType' => 'required',
+            'location' => 'required',
+        ]);
+
+        // Assets::create($formFields);
+
+        $asset = Assets::find($id);
+        $asset->name = $request['name'];
+        $asset->serialNumber = $request['serialNumber'];
+        $asset->assetNumber = $request['assetNumber'];
+        $asset->description = $request['description'];
+        $asset->manufacturer = $request['manufacturer'];
+        $asset->assetType = $request['assetType'];
+        $asset->location = $request['location'];
+        $asset->colour = $request['colour'];
+        $asset->dateOfPurchase = $request['dateOfPurchase'];
+        $asset->estimatedValue = $request['estimatedValue'];
+        $asset->dateOfLastInspection = $request['dateOfLastInspection'];
+        $asset->barCode = $request['barCode'];
+        $asset->barCodeData = $request['barCodeData'];
+        $asset->status = $request['status'];
+
+        $asset->update();
+        
+        return redirect ('/assets')->with('message', 'Asset Updated Successfully!');
     }
 
     /**

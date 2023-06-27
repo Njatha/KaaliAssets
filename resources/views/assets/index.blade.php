@@ -1,14 +1,27 @@
-<x-layout>
-    <div class="relative">
-        <div class="fixed top-0 left-164 right-0">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" width="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+<x-layout>    
+    {{-- <div class="sm:ml-64 mt-14">
+        <p class="text-l font-medium text-gray-900 dark:text-white" role="none">
+          Asset Management Software
+        </p>
+      </div>  --}}
+        <div class="sm:ml-64 mt-10 pl-5 inline-flex text-xs">
+            <a href="/" class="inline-flex hover:text-blue-900 hover:underline underline-offset-2"><svg class="pr-1" fill="none" stroke="currentColor" stroke-width="1.5" width="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"></path>
-              </svg>
+            </svg>
+            <span class="flex-1 ml-1 whitespace-nowrap">Home</span>
+            </a>
+            <span class="flex-1 px-1">></span>
+            <a href="/assets" class="inline-flex hover:text-blue-900 hover:underline underline-offset-2"><svg aria-hidden="true" class=" text-gray-100 " fill="none" stroke="currentColor" width="15" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+            <span class="flex-1 ml-1 whitespace-nowrap ">Asset Register</span>
+            </a>
+            
+               
         </div>
-    </div>
+     
 <x-card>
    
-   
+    
                 
     {{-- New Button --}}
     <div class="grid grid-cols-2">
@@ -24,7 +37,7 @@
    
     
         {{-- Search Bar --}}
-        <div class="">
+        <div class="grid">
             <form>   
                 <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div class="relative">

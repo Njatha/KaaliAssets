@@ -27,12 +27,11 @@
                   </svg>
                </button>
               <a href="https://flowbite.com" class="flex ml-2 md:mr-24">
-                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="FlowBite Logo" />
+                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="KaaliAssets Logo" />
                 <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">KaaliAssets</span>
               </a>
-              <p class="text-l font-medium text-gray-900 dark:text-white" role="none">
-                Asset Management Software
-              </p>
+             
+              
             </div>
 
             
