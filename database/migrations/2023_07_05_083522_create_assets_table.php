@@ -16,8 +16,11 @@ return new class extends Migration
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('serialNumber');
+            // $table->string('assets_id')->unique();
+            // $table->primary('assets_id');
+            $table->string('serialNumber')->unique();            
             $table->string('assetNumber');
+            $table->string('assignedUser')->nullable();
             $table->string('description')->nullable();
             $table->string('manufacturer');
             $table->string('assetType');

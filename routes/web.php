@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AssetsController;
+use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,3 +42,9 @@ Route::put('/assets/{assets}', [AssetsController::class, 'update']);
 
 // Single Asset
 Route::get('/assets/{assets}', [AssetsController::class, 'show']);
+
+
+
+
+//Schedule
+Route::get('/schedule',[ScheduleController::class, 'index']);

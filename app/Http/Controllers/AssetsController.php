@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Ramsey\Uuid\Uuid;
 use App\Models\Assets;
+use App\Models\AssetHistory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AssetsController extends Controller
 {
@@ -63,6 +66,7 @@ class AssetsController extends Controller
         $asset->name = $request['name'];
         $asset->serialNumber = $request['serialNumber'];
         $asset->assetNumber = $request['assetNumber'];
+        $asset->assignedUser = $request['assignedUser'];
         $asset->description = $request['description'];
         $asset->manufacturer = $request['manufacturer'];
         $asset->assetType = $request['assetType'];
@@ -76,6 +80,14 @@ class AssetsController extends Controller
         $asset->status = $request['status'];
 
         $asset->save();
+
+
+        $assetHistory = new AssetHistory();
+        $assetHistory->assets_id = $asset->id;
+        $assetHistory->serialNumber = $request['serialNumber'];
+        $assetHistory->description = 'Asset Created';
+        
+        $assetHistory->save();
         
         return redirect ('/assets')->with('message', 'Asset Created Successfully!');
     }
@@ -90,10 +102,17 @@ class AssetsController extends Controller
      //Show single asset
     public function show(Assets $assets)
     {
-        return view ('assets.show', [
-            'asset' => $assets
-        ]);
-      
+        // $assetHistory = DB::table('asset_histories')->where('assets_id', $assets->assets_id);
+
+        $assetHistorys = DB::table('asset_histories')->where('assets_id', $assets->id)->get();
+        
+
+        // return view ('assets.show', [
+        //     'asset' => $assets
+        // ]);
+            return view('assets.show')
+            ->with('asset', $assets)
+            ->with('assetHistorys', $assetHistorys);
     }
 
     /**
@@ -131,12 +150,13 @@ class AssetsController extends Controller
             'location' => 'required',
         ]);
 
-        // Assets::create($formFields);
+        
 
         $asset = Assets::find($id);
         $asset->name = $request['name'];
         $asset->serialNumber = $request['serialNumber'];
         $asset->assetNumber = $request['assetNumber'];
+        $asset->assignedUser = $request['assignedUser'];
         $asset->description = $request['description'];
         $asset->manufacturer = $request['manufacturer'];
         $asset->assetType = $request['assetType'];
@@ -150,6 +170,19 @@ class AssetsController extends Controller
         $asset->status = $request['status'];
 
         $asset->update();
+
+        // $assetSerial = $asset->serialNumber;
+
+        // $assetHistory = AssetHistory::find($assetSerial);
+        // $assetHistory->assets_id = $id;
+
+        // $assetHistory->update();
+
+        // $assetHistory = new AssetHistory();
+        // $assetHistory->serialNumber = $request['serialNumber'];
+        // $assetHistory->description = 'Asset Updated';
+        
+        // $assetHistory->save();
         
         return redirect ('/assets')->with('message', 'Asset Updated Successfully!');
     }
