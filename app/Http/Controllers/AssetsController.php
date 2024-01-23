@@ -73,7 +73,7 @@ class AssetsController extends Controller
         $asset->location = $request['location'];
         $asset->colour = $request['colour'];
         $asset->dateOfPurchase = $request['dateOfPurchase'];
-        $asset->estimatedValue = $request['estimatedValue'];
+        $asset->site = $request['site'];
         $asset->dateOfLastInspection = $request['dateOfLastInspection'];
         $asset->barCode = $request['barCode'];
         $asset->barCodeData = $request['barCodeData'];
@@ -162,14 +162,129 @@ class AssetsController extends Controller
         $asset->assetType = $request['assetType'];
         $asset->location = $request['location'];
         $asset->colour = $request['colour'];
+        $asset->site = $request['site'];
         $asset->dateOfPurchase = $request['dateOfPurchase'];
-        $asset->estimatedValue = $request['estimatedValue'];
+        $asset->site = $request['site'];
         $asset->dateOfLastInspection = $request['dateOfLastInspection'];
         $asset->barCode = $request['barCode'];
         $asset->barCodeData = $request['barCodeData'];
         $asset->status = $request['status'];
 
+            if($asset->isDirty('name')){
+                $assetHistory = new AssetHistory();
+                $assetHistory->assets_id = $asset->id;
+                $assetHistory->serialNumber = $request['serialNumber'];
+
+                $originalField = $asset->getOriginal('name');
+                $assetHistory->description = 'Asset Name updated from '. $originalField .' to '.$request['name'];
+                
+            }
+            if($asset->isDirty('assetNumber')){
+                $assetHistory = new AssetHistory();
+                $assetHistory->assets_id = $asset->id;
+                $assetHistory->serialNumber = $request['serialNumber'];
+
+                $originalField = $asset->getOriginal('assetNumber');
+                $assetHistory->description = 'Asset Number updated from '. $originalField .' to '.$request['assetNumber'];
+            }
+            elseif($asset->isDirty('description')){
+                $assetHistory = new AssetHistory();
+                $assetHistory->assets_id = $asset->id;
+                $assetHistory->serialNumber = $request['serialNumber'];
+
+                $originalField = $asset->getOriginal('description');
+                $assetHistory->description = 'Asset description updated from '. $originalField .' to '.$request['description'];
+            }
+            elseif($asset->isDirty('manufacturer')){
+                $assetHistory = new AssetHistory();
+                $assetHistory->assets_id = $asset->id;
+                $assetHistory->serialNumber = $request['serialNumber'];
+
+                $originalField = $asset->getOriginal('manufacturer');
+                $assetHistory->description = 'Asset manufacturer updated from '. $originalField .' to '.$request['manufacturer'];
+            }
+            elseif($asset->isDirty('assetType')){
+                $assetHistory = new AssetHistory();
+                $assetHistory->assets_id = $asset->id;
+                $assetHistory->serialNumber = $request['serialNumber'];
+
+                $originalField = $asset->getOriginal('assetType');
+                $assetHistory->description = 'Asset type updated from '. $originalField .' to '.$request['assetType'];
+            }
+            elseif($asset->isDirty('location')){
+                $assetHistory = new AssetHistory();
+                $assetHistory->assets_id = $asset->id;
+                $assetHistory->serialNumber = $request['serialNumber'];
+
+                $originalField = $asset->getOriginal('location');
+                $assetHistory->description = 'Asset location updated from '. $originalField .' to '.$request['location'];
+            }
+            elseif($asset->isDirty('colour')){
+                $assetHistory = new AssetHistory();
+                $assetHistory->assets_id = $asset->id;
+                $assetHistory->serialNumber = $request['serialNumber'];
+
+                $originalField = $asset->getOriginal('colour');
+                $assetHistory->description = 'Asset colour updated from '. $originalField .' to '.$request['colour'];
+            }
+            elseif($asset->isDirty('dateOfPurchase')){
+                $assetHistory = new AssetHistory();
+                $assetHistory->assets_id = $asset->id;
+                $assetHistory->serialNumber = $request['serialNumber'];
+
+                $originalField = $asset->getOriginal('dateOfPurchase');
+                $assetHistory->description = 'Asset date of purchase updated from '. $originalField .' to '.$request['dateOfPurchase'];
+            }
+            elseif($asset->isDirty('site')){
+                $assetHistory = new AssetHistory();
+                $assetHistory->assets_id = $asset->id;
+                $assetHistory->serialNumber = $request['serialNumber'];
+
+                $originalField = $asset->getOriginal('site');
+                $assetHistory->description = 'Asset site updated from '. $originalField .' to '.$request['site'];
+            }
+            elseif($asset->isDirty('dateOfLastInspection')){
+                $assetHistory = new AssetHistory();
+                $assetHistory->assets_id = $asset->id;
+                $assetHistory->serialNumber = $request['serialNumber'];
+
+                $originalField = $asset->getOriginal('dateOfLastInspection');
+                $assetHistory->description = 'Asset date of last inspection updated from '. $originalField .' to '.$request['dateOfLastInspection'];
+            }
+            elseif($asset->isDirty('barCode')){
+                $assetHistory = new AssetHistory();
+                $assetHistory->assets_id = $asset->id;
+                $assetHistory->serialNumber = $request['serialNumber'];
+
+                $originalField = $asset->getOriginal('barCode');
+                $assetHistory->description = 'Barcode changed';
+            }
+            elseif($asset->isDirty('barCodeData')){
+                $assetHistory = new AssetHistory();
+                $assetHistory->assets_id = $asset->id;
+                $assetHistory->serialNumber = $request['serialNumber'];
+
+                $originalField = $asset->getOriginal('barCodeData');
+                $assetHistory->description = 'BarCode data changed';
+            }
+            elseif($asset->isDirty('status')){
+                $assetHistory = new AssetHistory();
+                $assetHistory->assets_id = $asset->id;
+                $assetHistory->serialNumber = $request['serialNumber'];
+
+                $originalField = $asset->getOriginal('status');
+                $assetHistory->description = 'Asset status updated from '. $originalField .' to '.$request['status'];
+            }
+            
+            
+            $assetHistory->save();
+
+
         $asset->update();
+
+        
+       
+
 
         // $assetSerial = $asset->serialNumber;
 
@@ -184,7 +299,14 @@ class AssetsController extends Controller
         
         // $assetHistory->save();
         
-        return redirect ('/assets')->with('message', 'Asset Updated Successfully!');
+        return redirect ('/assets/'.$id)->with('message', 'Asset Updated Successfully!');
+    }
+
+         //Show schedule asset Form
+    public function schedule(Assets $assets)
+    {
+        return view('assets.schedule', ['asset' => $assets]);
+        
     }
 
     /**

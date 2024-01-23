@@ -37,6 +37,9 @@ Route::post('/assets', [AssetsController::class, 'store']);
 //Show Edit Form
 Route::get('/assets/{assets}/edit', [AssetsController::class, 'edit']);
 
+//Show Schedule Asset Form
+Route::get('/assets/{assets}/schedule', [AssetsController::class, 'schedule']);
+
 //Update Asset
 Route::put('/assets/{assets}', [AssetsController::class, 'update']);
 

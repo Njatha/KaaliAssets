@@ -14,11 +14,12 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75H6A2.25 2.25 0 003.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0120.25 6v1.5m0 9V18A2.25 2.25 0 0118 20.25h-1.5m-9 0H6A2.25 2.25 0 013.75 18v-1.5M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
       </svg>
     <span class="flex-1 ml-1 whitespace-nowrap ">{{$asset->name}}</span>
-    </a>
-    
-       
+    </a>  
   </div>
+
     <x-card>
+      <h2 class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Edit Asset</h2>
+          <br>
         <form method="POST" action="/assets/{{$asset->id}}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -46,7 +47,7 @@
                   </div>
                   <div class="mb-6">
                     <label for="assignedUser" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Assigned User</label>
-                    <input type="text" id="assignedUser" name="assignedUser" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{$asset->assignedUser}}" > 
+                    <input type="text" id="assignedUser" name="assignedUser" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{$asset->assignedUser}}" > 
                     @error('assignedUser')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                     @enderror
@@ -80,12 +81,13 @@
                     @enderror
                   </div>
                   <div class="mb-6">
-                    <label for="estimatedValue" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Site</label>
-                    <input type="text" id="estimatedValue" name="estimatedValue" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{$asset->estimatedValue}}" > 
-                    @error('estimatedValue')
+                    <label for="site" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Site</label>
+                    <input type="text" id="site" name="site" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{$asset->site}}" > 
+                    @error('site')
                       <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                   @enderror
                 </div>
+                  
                   <div class="mb-6">
                       <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
                       <input type="text" id="location" name="location" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{$asset->location}}" > 

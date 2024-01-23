@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('colour')->nullable();
             $table->string('image')->nullable();
             $table->date('dateOfPurchase')->nullable();
-            $table->string('estimatedValue')->nullable();
+            $table->string('site')->nullable();
             $table->date('dateOfLastInspection')->nullable();
             $table->string('barCode')->nullable();
             $table->string('barCodeData')->nullable();

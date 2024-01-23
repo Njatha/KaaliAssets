@@ -14,11 +14,14 @@
       <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path>
       </svg>
     <span class="flex-1 ml-1 whitespace-nowrap ">New Asset</span>
+    
     </a>
     
        
 </div>
     <x-card>
+      <h2 class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Create New Asset</h2>
+          <br>
         <form method="POST" action="/assets" enctype="multipart/form-data">
             @csrf
             <div class="grid md:grid-cols-2 md:gap-6">
@@ -71,13 +74,7 @@
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                     @enderror
                     </div>
-                  <div class="mb-6">
-                      <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
-                      <input type="text" id="location" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('location')}}" > 
-                      @error('location')
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                  </div>
+                  
                   <div class="mb-6">
                       <label for="colour" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Colour</label>
                       <input type="text" id="colour" name="colour" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('colour')}}" > 
@@ -86,19 +83,27 @@
                     @enderror
                   </div>
                   <div class="mb-6">
+                    <label for="site" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Site</label>
+                    <input type="text" id="site" name="site" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('estimatedValue')}}" > 
+                    @error('site')
+                      <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                  @enderror
+                </div>
+                <div class="mb-6">
+                  <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+                  <input type="text" id="location" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('location')}}" > 
+                  @error('location')
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
+              </div>
+                  <div class="mb-6">
                       <label for="dateOfPurchase" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date Of Purchase</label>
                       <input type="date" id="dateOfPurchase" name="dateOfPurchase" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('dateOfPurchase')}}" > 
                       @error('dateOfPurchase')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                     @enderror
                   </div>
-                  <div class="mb-6">
-                      <label for="estimatedValue" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estimated Value</label>
-                      <input type="text" id="estimatedValue" name="estimatedValue" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('estimatedValue')}}" > 
-                      @error('estimatedValue')
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                  </div>
+                  
                   <div class="mb-6">
                       <label for="dateOfLastInspection" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date Of Last Inspection</label>
                       <input type="date" id="dateOfLastInspection" name="dateOfLastInspection" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('dateOfLastInspection')}}" > 
